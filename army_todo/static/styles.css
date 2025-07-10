@@ -1,0 +1,111 @@
+:root {
+    --army-green: #4B5320;
+    --olive-drab: #6B8E23;
+    --khaki: #F0E68C;
+    --dark-brown: #654321;
+    --black: #000000;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: var(--khaki);
+    color: var(--black);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: var(--army-green);
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-bottom: 5px solid var(--dark-brown);
+}
+
+h1, h2, h3 {
+    font-family: 'Stardos Stencil', serif;
+}
+
+.btn {
+    background-color: var(--olive-drab);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-weight: bold;
+    text-decoration: none;
+    display: inline-block;
+    margin: 5px;
+}
+
+.btn:hover {
+    background-color: var(--dark-brown);
+}
+
+.task-card {
+    background-color: white;
+    border-left: 5px solid var(--olive-drab);
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid var(--dark-brown);
+    border-radius: 4px;
+}
+
+.form-check-input {
+    margin-right: 10px;
+}
+
+.messages {
+    margin: 10px 0;
+    padding: 0;
+    list-style: none;
+}
+
+.message {
+    padding: 12px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    font-family: 'Stardos Stencil', serif;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-left: 5px solid;
+}
+
+.message.error {
+    background-color: #8B0000;
+    color: white;
+    border-left-color: #FF0000;
+}
+
+.message.success {
+    background-color: var(--olive-drab);
+    color: white;
+    border-left-color: #90EE90;
+}
+
+.message.warning {
+    background-color: #DAA520;
+    color: white;
+    border-left-color: #FFD700;
+}
+
+.message.info {
+    background-color: var(--army-green);
+    color: white;
+    border-left-color: var(--khaki);
+}

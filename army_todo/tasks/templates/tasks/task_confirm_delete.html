@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Confirm Mission Termination</h2>
+    <p>Are you sure you want to delete the mission: <strong>{{ task.title }}</strong>?</p>
+    <form method="post" action="{% url 'task_delete' task.pk %}">
+        {% csrf_token %}
+        <button type="submit" class="btn" style="background-color: #8B0000;">Confirm Termination</button>
+        <a href="{% url 'task_list' %}" class="btn">Cancel</a>
+    </form>
+{% endblock %}

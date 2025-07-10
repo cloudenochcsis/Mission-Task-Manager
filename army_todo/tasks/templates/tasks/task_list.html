@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Current Missions</h2>
+    <a href="{% url 'task_create' %}" class="btn">+ New Mission</a>
+    
+    <div class="task-list">
+        {% for task in tasks %}
+            <div class="task-card" data-task-id="{{ task.pk }}">
+                <h3>
+                    {% if task.completed %}
+                        <span style="color: var(--olive-drab);">✓</span>
+                    {% endif %}
+                    {{ task.title }}
+                </h3>
+                <p>{{ task.description }}</p>
+                <small>Created: {{ task.created_at|date:'Y-m-d H:i' }}</small>
+                <div style="margin-top: 10px;">
+                    <a href="{% url 'task_update' task.pk %}" class="btn">Edit</a>
+                    <form method="post" action="{% url 'task_delete' task.pk %}" style="display: inline;" class="delete-form">
+                        {% csrf_token %}
+                        <button type="submit" class="btn" style="background-color: #8B0000;">Delete</button>
+                    </form>
+                </div>
+            </div>
+        {% empty %}
+            <p>No missions assigned. Stand by for orders.</p>
+        {% endfor %}
+    </div>
+{% endblock %}
