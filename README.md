@@ -52,6 +52,8 @@ pip install -r requirements.txt
 python manage.py migrate
 ```
 
+> **Note:** If you encounter a `ModuleNotFoundError: No module named 'army_todo'` error when running migrations, this is because the project structure has been updated. The settings have been fixed in the latest version of the repository.
+
 ## Running the Application
 
 1. Start the development server:
@@ -146,3 +148,49 @@ This is a proof of concept and may need additional security measures before prod
 - Add API rate limiting
 - Configure proper production settings
 - Set up proper static file serving
+
+## Troubleshooting
+
+### ModuleNotFoundError: No module named 'army_todo'
+
+If you encounter this error when running migrations or starting the server, it means the Django settings module reference is incorrect. This has been fixed in the latest version, but if you're still experiencing it:
+
+1. Open `manage.py` and change:
+   ```python
+   os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'army_todo.settings')
+   ```
+   to:
+   ```python
+   os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings')
+   ```
+
+2. Open `settings.py` and update:
+   ```python
+   ROOT_URLCONF = 'army_todo.urls'
+   WSGI_APPLICATION = 'army_todo.wsgi.application'
+   ```
+   to:
+   ```python
+   ROOT_URLCONF = 'urls'
+   WSGI_APPLICATION = 'wsgi.application'
+   ```
+
+### TemplateDoesNotExist: base.html
+
+If you encounter this error when accessing the web interface, it means Django can't find the base template. To fix this:
+
+1. Make sure `base.html` exists in both the `/templates` directory and the `/tasks/templates` directory.
+2. If it doesn't exist in `/tasks/templates`, copy it there:
+   ```bash
+   cp templates/base.html tasks/templates/
+   ```
+
+### Static Files Not Loading (404 Error for styles.css)
+
+If static files like CSS are not loading, check the STATICFILES_DIRS setting in `settings.py`. It should point to the correct absolute path:
+
+```python
+STATICFILES_DIRS = ['/path/to/your/project/static']
+```
+
+Replace `/path/to/your/project` with the actual path to your project directory.
