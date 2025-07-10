@@ -9,8 +9,10 @@ A military-themed task management application built for Army task management. Th
 - Stencil typography for military aesthetics
 - Clean and intuitive interface
 - Responsive design
-- Form validation
+- Form validation with duplicate prevention
+- Military-themed success/error messages
 - Comprehensive test coverage
+- Transaction-safe operations
 
 ## Prerequisites
 
@@ -21,8 +23,8 @@ A military-themed task management application built for Army task management. Th
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
-cd army_todo
+git clone https://github.com/cloudenochcsis/Mission-Task-Manager.git
+cd Mission-Task-Manager
 ```
 
 2. Create a virtual environment:
@@ -81,31 +83,52 @@ python manage.py test tasks.test_units
 ## Project Structure
 
 ```
-army_todo/
-├── army_todo/          # Project settings
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── tasks/              # Main application
-│   ├── models.py       # Task model
-│   ├── views.py        # View functions
-│   ├── forms.py        # Form definitions
-│   ├── tests.py        # Integration tests
-│   ├── test_units.py   # Unit tests
-│   └── templates/      # HTML templates
-├── static/             # Static files
-│   └── styles.css      # Military-themed styles
-├── templates/          # Base templates
-└── manage.py          # Django management script
+./
+├── __init__.py        # Project initialization
+├── settings.py        # Project settings
+├── urls.py            # Project URL configuration
+├── wsgi.py            # WSGI configuration
+├── asgi.py            # ASGI configuration
+├── tasks/             # Main application
+│   ├── models.py      # Task model
+│   ├── views.py       # View functions with error handling
+│   ├── forms.py       # Form definitions with validation
+│   ├── tests.py       # Integration tests
+│   ├── test_units.py  # Unit tests
+│   ├── urls.py        # App URL configuration
+│   └── templates/     # Task-specific templates
+├── static/            # Static files
+│   └── styles.css     # Military-themed styles
+├── templates/         # Base templates
+│   └── base.html      # Base template with message display
+├── manage.py          # Django management script
+└── requirements.txt   # Project dependencies
 ```
 
-## Development
+## Features in Detail
 
-- The application uses Django's built-in SQLite database for development
-- Static files are served directly by Django in development mode
-- All templates extend from a base template that includes the military styling
-- Form validation ensures data integrity
-- Transaction atomic operations prevent data inconsistencies
+### Task Management
+- Create new missions with title and description
+- View all current missions in a military-styled list
+- Update mission details and status
+- Delete missions with confirmation
+
+### Data Protection
+- Duplicate mission prevention (within 1-minute window)
+- Transaction-safe database operations
+- CSRF protection on all forms
+
+### User Interface
+- Military-themed color scheme (army green, olive drab, khaki)
+- Stencil typography for headers
+- Clear success/error messages with military styling
+- Responsive design for all screen sizes
+
+### Error Handling
+- Graceful handling of all CRUD operations
+- Clear feedback messages for users
+- Proper validation of all inputs
+- Safe deletion with confirmation
 
 ## Contributing
 
